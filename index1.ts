@@ -4,8 +4,10 @@ import bodyParser from 'koa-bodyparser';
 import cors from '@koa/cors';
 import qs from 'koa-qs';
 import { RegisterRoutes } from './dist/routes';
-import * as swaggerUi from 'koa2-swagger-ui'; // Use import * as
-import swaggerDoc from './dist/swagger.json';
+import * as swaggerUi from 'koa2-swagger-ui'; // Import everything from koa2-swagger-ui
+import swaggerDoc from './dist/swagger.json'; // Ensure this points to the correct swagger.json
+
+const { koaSwagger } = swaggerUi; // Destructure koaSwagger
 
 const app = new Koa();
 const router = new KoaRouter();
@@ -19,7 +21,7 @@ qs(app); // Enable query-string support
 RegisterRoutes(router);
 
 // Swagger setup
-app.use(swaggerUi.koaSwagger({
+app.use(koaSwagger({
     routePrefix: '/docs', // Route for the Swagger UI
     swaggerOptions: {
         spec: swaggerDoc, // Use the imported swagger.json directly
@@ -45,4 +47,3 @@ const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
-

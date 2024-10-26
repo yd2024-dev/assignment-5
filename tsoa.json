@@ -1,0 +1,14 @@
+{
+  "entryFile": "./index.ts",
+  "noImplicitAny": true,
+  "controllerPathGlobs": ["controllers/*.route.ts"],
+  "spec": {
+    "outputDirectory": "dist", 
+    "specVersion": 3 
+  },
+  "routes": {
+    "routesDir": "dist", 
+    "basePath": "/api", 
+    "middleware": "koa" 
+  }
+}

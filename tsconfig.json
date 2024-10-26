@@ -7,15 +7,27 @@
     "lib": ["es2023"],
     "module": "es2022",
     "target": "es2022",
-
+    "experimentalDecorators": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "bundler",
+    "outDir": "./dist",     // Output directory for compiled files
+    "rootDir": "./",        // Set rootDir to project root
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "types": [
-      "vitest/importMeta"
+      "vitest/importMeta",
+      "@types/node" // Include Node.js types
     ]
-  }
+  },
+
+  "include": [
+    "adapter/**/*",        // Include all files in adapter
+    "controllers/**/*",    // Include all files in controllers
+    "src/**/*",            // Include all files in src
+    "*.ts",                // Include TypeScript files in the root directory
+    "@types/**/*"          // Include custom types if they are in a directory
+  ]
 }
