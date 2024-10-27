@@ -5,10 +5,11 @@
   "main": "index.ts",
   "type": "module",
   "scripts": {
-    "start-server": "tsx ./index.ts",
-    "lint": "eslint ./**/*.ts",
-    "fix-lint": "eslint --fix ./**/*.ts",
-    "check-types": "tsc --noEmit",
+    "generate-sdk": "./generate-client-sdk.sh",
+    "start-server": "npm run generate-sdk && tsx ./index.ts",
+    "lint": "npm run generate-sdk && eslint ./**/*.ts",
+    "fix-lint": "npm run generate-sdk && eslint --fix ./**/*.ts",
+    "check-types": "npm run generate-sdk && tsc --noEmit",
     "test": "vitest",
     "test:ci": "vitest run"
   },
