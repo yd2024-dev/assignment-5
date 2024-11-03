@@ -16,9 +16,6 @@ app.use(bodyParser());
 app.use(cors());
 qs(app); // Enable query-string support
 
-// Register routes
-RegisterRoutes(router);
-
 // Swagger setup
 app.use(swaggerUi.koaSwagger({
     routePrefix: '/docs',
@@ -26,6 +23,9 @@ app.use(swaggerUi.koaSwagger({
         spec: swaggerDoc,
     },
 }));
+
+// Register routes
+RegisterRoutes(router);
 
 // Error handling middleware
 app.use(async (context, next) => {
@@ -41,8 +41,8 @@ app.use(async (context, next) => {
 // Use registered routes
 app.use(router.routes()).use(router.allowedMethods());
 
-// Export function to start the server
-export function startServer(port: number = 0): Promise<http.Server> {
+// Function to start the server
+export function startServer(port: number = 3001): Promise<http.Server> {
     return new Promise((resolve, reject) => {
         const server = app.listen(port, (err?: Error) => {
             if (err) {
@@ -54,3 +54,5 @@ export function startServer(port: number = 0): Promise<http.Server> {
         });
     });
 }
+
+// No direct call to startServer here

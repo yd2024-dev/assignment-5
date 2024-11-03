@@ -5,8 +5,8 @@
 
   "compilerOptions": {
     "lib": ["es2023"],
-    "module": "es2022",
-    "target": "es2022",
+    "module": "commonjs", // or "esnext"
+    "target": "es6",      // or another target you prefer
     "experimentalDecorators": true,
     "strict": true,
     "esModuleInterop": true,

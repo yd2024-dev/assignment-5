@@ -1,6 +1,6 @@
 import { startServer } from './serverLauncher';
 
-const PORT = 3000; // Set the port number as needed
+const PORT = 3001; // Set the port number as needed
 
 startServer(PORT)
     .catch((error) => {

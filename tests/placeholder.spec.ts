@@ -1,24 +1,22 @@
 // tests/placeholder.spec.ts
-import { setupServer } from './setupServer';
-import { DefaultApi, Configuration } from './client/apis/GreetingApi'; // Adjust to your actual API client import
-import placeholderRoutes from './dist/routes'; // Adjust to your routes file
-
-const { address, close } = setupServer();
+import { setupServer, TestContext } from './serverTestHelper';
+import { DefaultApi, Configuration } from './client/apis/GreetingApi'; // Adjust this import as necessary
 
 describe('Placeholder Route', () => {
-    const server = setupServer();
-    const client = new DefaultApi(new Configuration({ basePath: server.address }));
+    let context: TestContext;
 
-    beforeEach(() => {
-        server.app.use('/', placeholderRoutes); // Use the placeholder routes
+    beforeEach(async () => {
+        context = await setupServer();
     });
 
-    afterEach(() => {
-        server.close();
+    afterEach(async () => {
+        await context.close();
     });
 
     it('should return a placeholder message', async () => {
+        const client = new DefaultApi(new Configuration({ basePath: context.address }));
         const response = await client.getPlaceholder(); // Adjust to your API client method
+
         expect(response.status).toBe(200);
         expect(response.data).toEqual({ message: 'This is a placeholder route.' });
     });
